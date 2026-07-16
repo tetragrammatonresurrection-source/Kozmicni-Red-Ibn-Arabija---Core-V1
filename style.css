@@ -1,0 +1,269 @@
+:root {
+    --bg-color: #030712;
+    --panel-color: #0b1329;
+    --accent-color: #38bdf8;
+    --text-color: #f8fafc;
+    --text-muted: #64748b;
+    --border-color: #1e293b;
+    --highlight: #0284c7;
+    --gold: #f59e0b;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 15px 20px 70px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+header h1 {
+    color: var(--accent-color);
+    margin: 0 0 3px 0;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.8rem;
+}
+
+header .subtitle {
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* NOVI FILTRIRAN GLAVNI PREGLED (Samo za nadzorno ploščo in krog) */
+.top-layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto 30px auto;
+}
+
+.side-control-panel {
+    flex: 1;
+    min-width: 380px;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.time-panel {
+    background-color: var(--panel-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.time-box {
+    background: rgba(2, 6, 23, 0.4);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.01);
+}
+
+.time-box h3 {
+    margin: 0 0 4px 0;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.time-box p {
+    margin: 0;
+    font-size: 1.05rem;
+    font-family: monospace;
+    font-weight: bold;
+    color: #e2e8f0;
+}
+
+.input-panel {
+    background-color: var(--panel-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.input-panel label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+input[type="datetime-local"] {
+    background-color: #020617;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 10px;
+    border-radius: 6px;
+    font-family: monospace;
+    font-size: 0.95rem;
+}
+
+button {
+    background-color: var(--highlight);
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+
+button:hover { background-color: #0369a1; }
+.btn-secondary { background-color: #334155; }
+.btn-secondary:hover { background-color: #1e293b; }
+
+.wheel-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wheel-container {
+    position: relative;
+    width: 580px; 
+    height: 580px;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.15));
+}
+
+svg #wheel {
+    transform: rotate(-90deg);
+    transform-origin: 325px 325px;
+}
+
+.mansion-sector {
+    fill: rgba(15, 23, 42, 0.6);
+    stroke: #111827;
+    stroke-width: 1;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.mansion-sector:hover, .mansion-sector.active {
+    fill: rgba(56, 189, 248, 0.25);
+    stroke: var(--accent-color);
+}
+
+.mansion-sector.live-mansion {
+    fill: rgba(245, 158, 11, 0.15);
+    stroke: var(--gold);
+    stroke-width: 2;
+}
+
+.wheel-text {
+    fill: #94a3b8;
+    font-size: 9px;
+    pointer-events: none;
+    font-family: sans-serif;
+}
+
+.degree-text { fill: #475569; font-size: 8px; font-family: monospace; }
+.degree-tick { stroke: #1e293b; }
+
+.center-circle {
+    fill: #020617;
+    stroke: var(--gold);
+    stroke-width: 1;
+}
+
+.center-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+    width: 200px;
+}
+
+.center-info .moon-phase-pic { font-size: 3.5rem; color: var(--gold); margin-bottom: 2px; }
+.center-info .moon-age { font-size: 0.85rem; font-weight: bold; line-height: 1.3; }
+
+.table-wrapper { max-width: 1300px; margin: 0 auto; width: 100%; }
+.table-container {
+    background-color: var(--panel-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow-x: auto;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+}
+
+table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.82rem; }
+th, td { padding: 12px 14px; border-bottom: 1px solid var(--border-color); }
+th { color: var(--accent-color); text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.5px; }
+tr:hover { background-color: rgba(56, 189, 248, 0.03); }
+tr.highlighted { background-color: rgba(56, 189, 248, 0.12) !important; }
+tr.live-row { border-left: 4px solid var(--gold); background-color: rgba(245, 158, 11, 0.05); }
+
+.arabic-text { font-size: 1.1rem; color: #38bdf8; font-weight: bold; }
+.quran-text { color: #34d399; font-family: monospace; font-size: 0.8rem; }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #020617;
+    border-top: 1px solid #1e293b;
+    color: #64748b;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    z-index: 1000;
+    font-weight: bold;
+}
+footer .brand { color: #f8fafc; text-shadow: 0 0 8px rgba(56, 189, 248, 0.6); }
+
+@media (max-width: 950px) {
+    .top-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+/* --- POPRAVEK ZA PROFESIONALNI IZRIS STOPINJ NA KROGU --- */
+.degree-tick {
+    stroke: #334155;     /* Diskreten temno siv odtenek za črtice gradacije */
+    stroke-width: 1.5px;
+}
+
+.degree-text {
+    fill: #64748b;        /* Prefinjena barva za tekst stopinj, ki se sklada z ozadjem */
+    font-size: 10px;
+    font-family: monospace;
+    font-weight: normal;
+}
+

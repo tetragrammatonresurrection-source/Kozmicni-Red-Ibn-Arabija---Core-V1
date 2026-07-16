@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kozmični Red Ibn Arabija - 28 Lunarnih Dvorcev</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUiIHI9IjQ4IiBmaWxsPSIjMGIxMzI5IiBzdHJva2U9IiMzOGJkZjgiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik00MCwyNSBBMjUsMjUgMCAxLDAgNzUsNjAgQTMwLDMwIDAgMSwxIDQwLDI1IFoiIGZpbGw9IiNmNTllMGIiLz48Y2lyY2xlIGN4PSI2NSIgY3k9IjM1IiByPSI2IiBmaWxsPSIjZmJiZjI0Ii8+PC9zdmc+">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* PRISILNI STILI ZA VIDNOST OZNAK NA KROGU (KARAT SOFT DESIGN) */
+        #mansion-lines line {
+            stroke: #38bdf8 !important;
+            stroke-width: 1px !important;
+            opacity: 0.4 !important;
+        }
+        .degree-tick {
+            stroke: #334155 !important;
+            stroke-width: 1.5px !important;
+            opacity: 0.8 !important;
+        }
+        .degree-text {
+            fill: #64748b !important;
+            font-size: 10px !important;
+            font-family: monospace !important;
+        }
+        .wheel-text {
+            fill: #94a3b8 !important;
+            font-size: 10px !important;
+            font-family: sans-serif !important;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Kozmični Red Ibn Arabija</h1>
+    <p class="subtitle">28 Lunarnih dvorcev (Manazil al-Qamar), Božanska imena in metafizična matrika manifestacije</p>
+</header>
+
+<!-- ZGORNJI DEL: Nadzorna plošča levo, Krog desno -->
+<div class="top-layout">
+    
+    <div class="side-control-panel">
+        <div class="time-panel">
+            <div class="time-box">
+                <h3>Lokalni čas</h3>
+                <p id="local-time">--:--:--</p>
+            </div>
+            <div class="time-box">
+                <h3>UTC Čas</h3>
+                <p id="utc-time">--:--:--</p>
+            </div>
+            <div class="time-box">
+                <h3>Osvetljenost / Starost</h3>
+                <p id="moon-illumination">--% (-- dni)</p>
+            </div>
+            <div class="time-box">
+                <h3>Lunarni Letni Dan / Leto</h3>
+                <p id="hijri-year">--. d / ---- AH</p>
+            </div>
+            <div class="time-box" style="grid-column: span 2; border: 1px solid var(--gold); text-align: center;">
+                <h3>Geometrijski Letni Dan & Makrokozmos</h3>
+                <p id="geo-day" style="margin-bottom: 5px;">--. dan / 360°</p>
+                <p id="zodiac-positions" style="font-size: 0.95rem; color: var(--accent-color); font-weight: normal; margin: 0;">☉ Sonce: -- | ☽ Luna: --</p>
+            </div>
+        </div>
+
+        <div class="input-panel">
+            <label for="calc-date">Izračun za poljuben datum / čas rojstva:</label>
+            <input type="datetime-local" id="calc-date">
+            <button id="btn-calc">Izračunaj kozmični položaj</button>
+            <button id="btn-reset" class="btn-secondary">Ponastavi čas</button>
+        </div>
+    </div>
+
+    <div class="wheel-wrapper">
+        <div class="wheel-container">
+                        <svg width="650" height="650" id="wheel-svg" viewBox="0 0 650 650">
+                <defs>
+                    <radialGradient id="space-grad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#0f172a" />
+                        <stop offset="70%" stop-color="#020617" />
+                        <stop offset="100%" stop-color="#000000" />
+                    </radialGradient>
+                </defs>
+                
+                <!-- 1. VESOLJSKO OZADJE -->
+                <circle cx="325" cy="325" r="320" fill="url(#space-grad)" stroke="#1e293b" stroke-width="2" />
+                
+                <!-- 2. FIKSNI INTERAKTIVNI SEKTORJI (ZA JAVASCRIPT) -->
+                <g id="wheel"></g>
+                <g id="mansion-lines"></g>
+                
+                <!-- 3. PRISILNE GRADACIJSKE ČRTICE NA VSAKIH 10° (Brez odvisnosti od JS) -->
+                <line x1="325" y1="35" x2="325" y2="41" class="degree-tick" />
+                <line x1="375" y1="39" x2="373" y2="45" class="degree-tick" />
+                <line x1="424" y1="53" x2="421" y2="59" class="degree-tick" />
+                <line x1="470" y1="74" x2="465" y2="79" class="degree-tick" />
+                <line x1="511" y1="104" x2="506" y2="108" class="degree-tick" />
+                <line x1="546" y1="141" x2="541" y2="144" class="degree-tick" />
+                <line x1="574" y1="183" x2="568" y2="185" class="degree-tick" />
+                <line x1="594" y1="229" x2="588" y2="231" class="degree-tick" />
+                <line x1="609" y1="277" x2="603" y2="278" class="degree-tick" />
+                <line x1="615" y1="325" x2="609" y2="325" class="degree-tick" />
+                <line x1="609" y1="373" x2="603" y2="372" class="degree-tick" />
+                <line x1="594" y1="421" x2="588" y2="419" class="degree-tick" />
+                <line x1="574" y1="467" x2="568" y2="465" class="degree-tick" />
+                <line x1="546" y1="509" x2="541" y2="506" class="degree-tick" />
+                <line x1="511" y1="546" x2="506" y2="542" class="degree-tick" />
+                <line x1="470" y1="576" x2="465" y2="571" class="degree-tick" />
+                <line x1="424" y1="597" x2="421" y2="591" class="degree-tick" />
+                <line x1="375" y1="611" x2="373" y2="605" class="degree-tick" />
+                <line x1="325" y1="615" x2="325" y2="609" class="degree-tick" />
+                <line x1="275" y1="611" x2="277" y2="605" class="degree-tick" />
+                <line x1="226" y1="597" x2="229" y2="591" class="degree-tick" />
+                <line x1="180" y1="576" x2="185" y2="571" class="degree-tick" />
+                <line x1="139" y1="546" x2="144" y2="542" class="degree-tick" />
+                <line x1="104" y1="509" x2="109" y2="506" class="degree-tick" />
+                <line x1="76" y1="467" x2="82" y2="465" class="degree-tick" />
+                <line x1="56" y1="421" x2="62" y2="419" class="degree-tick" />
+                <line x1="41" y1="373" x2="47" y2="372" class="degree-tick" />
+                <line x1="35" y1="325" x2="41" y2="325" class="degree-tick" />
+                <line x1="41" y1="277" x2="47" y2="278" class="degree-tick" />
+                <line x1="56" y1="229" x2="62" y2="231" class="degree-tick" />
+                <line x1="76" y1="183" x2="82" y2="185" class="degree-tick" />
+                <line x1="104" y1="141" x2="109" y2="144" class="degree-tick" />
+                <line x1="139" y1="104" x2="144" y2="108" class="degree-tick" />
+                <line x1="180" y1="74" x2="185" y2="79" class="degree-tick" />
+                <line x1="226" y1="53" x2="229" y2="59" class="degree-tick" />
+                <line x1="275" y1="39" x2="277" y2="45" class="degree-tick" />
+
+                <!-- 4. PRISILNE TEKSTOVNE OZNAKE ZA VSAKIH 30° (Meje zodiakalnih znamenj) -->
+                <text x="325" y="22" class="degree-text" text-anchor="middle">0°</text>
+                <text x="488" y="62" class="degree-text" text-anchor="middle">30°</text>
+                <text x="602" y="174" class="degree-text" text-anchor="middle">60°</text>
+                <text x="632" y="325" class="degree-text" text-anchor="middle" dominant-baseline="central">90°</text>
+                <text x="602" y="476" class="degree-text" text-anchor="middle">120°</text>
+                <text x="488" y="588" class="degree-text" text-anchor="middle">150°</text>
+                <text x="325" y="628" class="degree-text" text-anchor="middle">180°</text>
+                <text x="162" y="588" class="degree-text" text-anchor="middle">210°</text>
+                <text x="48" y="476" class="degree-text" text-anchor="middle">240°</text>
+                <text x="18" y="325" class="degree-text" text-anchor="middle" dominant-baseline="central">270°</text>
+                <text x="48" y="174" class="degree-text" text-anchor="middle">300°</text>
+                <text x="162" y="62" class="degree-text" text-anchor="middle">330°</text>
+
+                <!-- 5. FINI MATEMATIČNI ŽARKI ZA RAZDELITEV ŠTIRIH GLAVNIH KOTOV -->
+                <line x1="325" y1="35" x2="325" y2="615" stroke="#38bdf8" stroke-width="1" opacity="0.15" />
+                <line x1="35" y1="325" x2="615" y2="325" stroke="#38bdf8" stroke-width="1" opacity="0.15" />
+                                <!-- 5. PRISILNE IN POPOLNOMA SIMETRIČNE LOČNICE 28 DVORCEV (KARAT SOFT DESIGN) -->
+                <g stroke="#38bdf8" stroke-width="1" opacity="0.25">
+                    <line x1="325" y1="35" x2="325" y2="185" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(12.857, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(25.714, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(38.571, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(51.428, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(64.285, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(77.142, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(90.000, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(102.857, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(115.714, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(128.571, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(141.428, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(154.285, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(167.142, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(180.000, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(192.857, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(205.714, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(218.571, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(231.428, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(244.285, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(257.142, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(270.000, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(282.857, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(295.714, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(308.571, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(321.428, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(334.285, 325, 325)" />
+                    <line x1="325" y1="35" x2="325" y2="185" transform="rotate(347.142, 325, 325)" />
+                </g>
+                                    <!-- 6. ŠTEVILKE IN ARABSKE ČRKE DVORCEV (POPOLNA ROTACIJSKA SIMETRIJA - KARAT SOFT DESIGN) -->
+                <g fill="#94a3b8" font-size="15px" font-family="sans-serif" text-anchor="middle" dominant-baseline="central">
+                    <!-- Vsako polje ima odmik za sredino sektorja (+6.42 stopinj) -->
+                    <text x="325" y="55" transform="rotate(6.42, 325, 325)">1 <tspan fill="#38bdf8">أ</tspan></text>
+                    <text x="325" y="55" transform="rotate(19.28, 325, 325)">2 <tspan fill="#38bdf8">ب</tspan></text>
+                    <text x="325" y="55" transform="rotate(32.14, 325, 325)">3 <tspan fill="#38bdf8">ج</tspan></text>
+                    <text x="325" y="55" transform="rotate(45.00, 325, 325)">4 <tspan fill="#38bdf8">د</tspan></text>
+                    <text x="325" y="55" transform="rotate(57.85, 325, 325)">5 <tspan fill="#38bdf8">ه</tspan></text>
+                    <text x="325" y="55" transform="rotate(70.71, 325, 325)">6 <tspan fill="#38bdf8">و</tspan></text>
+                    <text x="325" y="55" transform="rotate(83.57, 325, 325)">7 <tspan fill="#38bdf8">ز</tspan></text>
+                    <text x="325" y="55" transform="rotate(96.42, 325, 325)">8 <tspan fill="#38bdf8">ح</tspan></text>
+                    <text x="325" y="55" transform="rotate(109.28, 325, 325)">9 <tspan fill="#38bdf8">ط</tspan></text>
+                    <text x="325" y="55" transform="rotate(122.14, 325, 325)">10 <tspan fill="#38bdf8">ي</tspan></text>
+                    <text x="325" y="55" transform="rotate(135.00, 325, 325)">11 <tspan fill="#38bdf8">ك</tspan></text>
+                    <text x="325" y="55" transform="rotate(147.85, 325, 325)">12 <tspan fill="#38bdf8">ل</tspan></text>
+                    <text x="325" y="55" transform="rotate(160.71, 325, 325)">13 <tspan fill="#38bdf8">م</tspan></text>
+                    <text x="325" y="55" transform="rotate(173.57, 325, 325)">14 <tspan fill="#38bdf8">ن</tspan></text>
+                    <text x="325" y="55" transform="rotate(186.42, 325, 325)">15 <tspan fill="#38bdf8">س</tspan></text>
+                    <text x="325" y="55" transform="rotate(199.28, 325, 325)">16 <tspan fill="#38bdf8">ع</tspan></text>
+                    <text x="325" y="55" transform="rotate(212.14, 325, 325)">17 <tspan fill="#38bdf8">ف</tspan></text>
+                    <text x="325" y="55" transform="rotate(225.00, 325, 325)">18 <tspan fill="#38bdf8">ص</tspan></text>
+                    <text x="325" y="55" transform="rotate(237.85, 325, 325)">19 <tspan fill="#38bdf8">ق</tspan></text>
+                    <text x="325" y="55" transform="rotate(250.71, 325, 325)">20 <tspan fill="#38bdf8">ر</tspan></text>
+                    <text x="325" y="55" transform="rotate(263.57, 325, 325)">21 <tspan fill="#38bdf8">ش</tspan></text>
+                    <text x="325" y="55" transform="rotate(276.42, 325, 325)">22 <tspan fill="#38bdf8">ت</tspan></text>
+                    <text x="325" y="55" transform="rotate(289.28, 325, 325)">23 <tspan fill="#38bdf8">ث</tspan></text>
+                    <text x="325" y="55" transform="rotate(302.14, 325, 325)">24 <tspan fill="#38bdf8">خ</tspan></text>
+                    <text x="325" y="55" transform="rotate(315.00, 325, 325)">25 <tspan fill="#38bdf8">ذ</tspan></text>
+                    <text x="325" y="55" transform="rotate(327.85, 325, 325)">26 <tspan fill="#38bdf8">ض</tspan></text>
+                    <text x="325" y="55" transform="rotate(340.71, 325, 325)">27 <tspan fill="#38bdf8">ظ</tspan></text>
+                    <text x="325" y="55" transform="rotate(353.57, 325, 325)">28 <tspan fill="#38bdf8">غ</tspan></text>
+                </g>
+
+                <!-- 6. SUN MARKER IN SREDINSKI KROG NA VRHU -->
+                                <!-- Dinamična markerja za Sonce in Luno -->
+                <circle id="sun-marker" cx="325" cy="325" r="8" fill="#fbbf24" stroke="#ffffff" stroke-width="1.5" style="display: none;" />
+                <circle id="moon-marker" cx="325" cy="325" r="7" fill="#e2e8f0" stroke="#38bdf8" stroke-width="1.5" style="display: none;" />
+                
+                <circle cx="325" cy="325" r="140" class="center-circle" />
+
+            </svg>
+
+
+            <div class="center-info">
+                <div id="moon-icon" class="moon-phase-pic">🌑</div>
+                <div id="moon-status" class="moon-age">Nalaganje...</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- SPODNJI DEL: Tabela čez celotno širino -->
+<div class="table-wrapper">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Št.</th>
+                    <th>Dvorec (Mansion)</th>
+                    <th>Razpon</th>
+                    <th>Črka</th>
+                    <th>Božansko Ime</th>
+                    <th>Pomen Imena</th>
+                    <th>Sfera Manifestacije</th>
+                    <th>Qur'an (Sura / Koncept)</th>
+                </tr>
+            </thead>
+            <tbody id="mansion-table-body"></tbody>
+        </table>
+    </div>
+</div>
+
+<footer>
+    POWERED BY <span class="brand">KARAT SOFT DESIGN</span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
