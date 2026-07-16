@@ -1,4 +1,5 @@
 # Kozmični Red Ibn Arabija — 28 Lunarnih Dvorcev
+![Predstavitvena slika kompasa](Kozmični%20Red%20Ibn%20Arabija%20-%2028%20Lunarnih%20Dvorcev.png)
 
 Mistično-astronomski navigacijski kompas in metafizična matrika manifestacije po učenju gnostika Ibn Arabija. Aplikacija v realnem času vizualizira tropske položaje svetil (☉ Sonca in ☽ Lune), izračunava starodavne naravne koledarske cikle ter predvaja meditativne planetarne frekvence (Hz) po sferah manifestacije.
 
